@@ -1,0 +1,36 @@
+TAB_DEFAULT = 8;
+USE_TABS = 1;
+TAB = 8;
+C_INDENT = 8;
+C_BRA_NEWLINE = 0;
+
+Tab_Always_Inserts_Tab = 0;
+
+IGNORE_BEEP = 0;
+LINENUMBERS = 2;
+
+public define c_mode_hook ()
+{
+	TAB = 8;
+	USE_TABS = 1;
+	C_INDENT = 8;
+	C_BRA_NEWLINE = 0;
+	LINENUMBERS = 2;
+}
+
+set_jed_library_path (get_jed_library_path() + ":" + getenv("HOME") + "/.jed/");
+autoload ("grep", "grep.sl");
+autoload ("init_aspell", "aspell.sl");
+autoload ("make_mode", "make.sl");
+autoload ("python_mode", "pymode.sl");
+
+set_color_scheme ("white1");
+
+%% spell checking
+variable Extended_Wordchars = "_";
+variable Aspell_Dict = "en" ;
+variable Aspell_Ask_Dictionary = 0;
+variable Aspell_Typo_Color = "red";
+variable Aspell_Flyspell = 1;
+variable Aspell_Use_Replacement_Wordlist = 0;
+variable Aspell_Use_Tabcompletion = 0;

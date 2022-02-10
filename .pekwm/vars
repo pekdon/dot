@@ -1,0 +1,5 @@
+$BROWSER="firefox"
+$EDITOR="xjed"
+$FILEMANAGER="worker"
+$TERM="xterm +sb"
+$TERMDARK="xterm +sb -bg black -fg white"

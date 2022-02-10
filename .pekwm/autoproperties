@@ -1,0 +1,50 @@
+Require {
+	Templates = "True"
+}
+
+// group xterm/urxvt applications together
+Property = "(term|rxvt),(erm|xvt)" {
+    ApplyOn = "New"
+    Group = "term" {
+        Size = "5"
+        FocusedFirst = "True"
+        Raise = "True"
+    }
+    Icon = "terminal.png"
+}
+
+Property = "^xcalc,^XCalc" {
+    ApplyOn = "New"
+    Icon = "calculator.png"
+}
+
+Property = "^emacs,^Emacs" {
+    ApplyOn = "New"
+    Icon = "editor.png"
+}
+
+// End of autoproperties. -------------------------
+
+TypeRules {
+    INCLUDE = "$_PEKWM_ETC_PATH/autoproperties_typerules"
+}
+
+// End of typerules. ------------------------------
+
+TitleRules {
+    Property = "^google-chrome,^Google-chrome" {
+        Rule = "/(.*) - Google Chrome/GC: \\1/"
+    }
+    Property = "^Navigator,^Firefox" {
+        Rule = "/(.*) . Mozilla Firefox/MF: \\1/"
+    }
+}
+
+
+// End of titlerules. -----------------------------
+
+
+// End of harbour order rules. --------------------
+
+
+// End of decor rules. ----------------------------

@@ -1,0 +1,55 @@
+XTerm*font: -misc-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
+XTerm*metaSendsEscape: true
+XTerm*loginShell: true
+XTerm*saveLines: 10000
+XTerm*termName: xterm-256color
+
+Emacs.fontBackend: x
+Emacs.font: -misc-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
+
+XJed.font: -misc-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
+
+dt.obsolete: true
+
+! bright theme
+! *.foreground: #000000
+! *.background: #ffffff
+! *.cursorColor: #000000
+! *.color0:  #000000
+! *.color8:  #000000
+! *.color1:  #bd000d
+! *.color9:  #bd000d
+! *.color2:  #006607
+! *.color10: #006607
+! *.color3:  #ffbb00
+! *.color11: #ffbb00
+! *.color4:  #004ce6
+! *.color12: #004ce6
+! *.color5:  #ad007f
+! *.color13: #ad007f
+! *.color6:  #005a61
+! *.color14: #005a61
+! *.color7:  #aaaaaa
+! *.color15: #ffffff
+
+! Wombat
+*.foreground:  #dedacf
+*.background:  #171717
+*.cursorColor: #bbbbbb
+*.color0:      #000000
+*.color8:      #313131
+*.color1:      #ff615a
+*.color9:      #f58c80
+*.color2:      #b1e969
+*.color10:     #ddf88f
+*.color3:      #ebd99c
+*.color11:     #eee5b2
+*.color4:      #5da9f6
+*.color12:     #a5c7ff
+*.color5:      #e86aff
+*.color13:     #ddaaff
+*.color6:      #82fff7
+*.color14:     #b7fff9
+*.color7:      #dedacf
+*.color15:     #ffffff
+*.colorBD:     #ffffff

@@ -1,0 +1,19 @@
+INCLUDE = "$_PEKWM_ETC_PATH/config_system"
+
+Files {
+    Theme = "~/.pekwm/themes/pwm-p"
+    ThemeVariant = ""
+}
+
+Screen {
+    Workspaces = "4"
+    WorkspacesPerRow = "2"
+    WorkspaceNames = "01;02;03;04"
+
+    #FontDefaultX11 = "True"
+    FontCharsetOverride = "iso8859-1"
+
+    Placement {
+        Model = "CenteredOnParent Smart MouseNotUnder"
+    }
+}

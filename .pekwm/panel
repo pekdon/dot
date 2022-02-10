@@ -1,0 +1,37 @@
+# pekwm_panel configuration
+
+Panel {
+  Placement = "Top"
+}
+
+Commands {
+  Command = "uptime | sed 's/.*:/load/'" {
+    Interval = "15"
+  }
+}
+
+Widgets {
+  Text = "%:WORKSPACE_NUMBER:" {
+    Size = "TextWidth _00_"
+  }
+  Text = "%load" {
+    Size = "TextWidth _0.00, 0.00, 0.00_"
+  }
+  Text = "%ATOM_CUT_BUFFER0" {
+    Size = "TextWidth _ABCDEFGHIJKLMNOP_"
+  }
+  ClientList {
+    Size = "*"
+  }
+  Icon = "ATOM__XKB_RULES_NAMES" {
+    Icon = "kbd.png"
+    # convert key list into the layout only skipping device and
+    # keyboard type. evdev,pc105,us,, -> us
+    Transform = "/^[^,]*,[^,]*,([^,]*),.*/\\1/"
+    Scale = "false"
+  }
+  DateTime = "%Y-%m-%d %H:%M" {
+    Size = "TextWidth _0000-00-00 00:00_"
+    Interval = "60"
+  }
+}
