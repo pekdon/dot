@@ -19,6 +19,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
 lua <<EOF
