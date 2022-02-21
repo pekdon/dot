@@ -25,16 +25,20 @@ case $TERM in
 esac
 
 EDITOR=nvim
+LC_CTYPE=en_US.UTF-8
+
 if test -d /usr/pkg/bin; then
 	PATH=/usr/pkg/bin:$PATH
 	ZSH_EXT_DIR=/usr/pkg/share
 	alias git='env SSH_AUTH_SOCK= git'
+elif test -d /usr/local/share/zsh; then
+	ZSH_EXT_DIR=/usr/local/share
 else
 	ZSH_EXT_DIR=/usr/share
 fi
 PATH=$HOME/pkg/bin:$PATH
 
-export PATH EDITOR
+export LC_CTYPE PATH EDITOR
 
 source $ZSH_EXT_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
 	>/dev/null 2>&1
