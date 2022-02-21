@@ -10,8 +10,9 @@ PATH=$HOME/pkg/bin:$PATH
 GTK3_CSD=0
 export EDITOR GTK3_CSD LC_CTYPE PATH
 
-xset b off &
+xset b off
 xrdb -l $HOME/.Xdefaults
+pekwm_panel &
 
 if [ -z "$SSH_AGENT_PID" ]; then
     exec ssh-agent pekwm
