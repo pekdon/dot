@@ -29,6 +29,7 @@ Widgets {
     # keyboard type. evdev,pc105,us,, -> us
     Transform = "/^[^,]*,[^,]*,([^,]*),.*/\\1/"
     Scale = "false"
+    Exec = "toggle_kbd_layout.sh"
   }
   DateTime = "%Y-%m-%d %H:%M" {
     Size = "TextWidth _0000-00-00 00:00_"
