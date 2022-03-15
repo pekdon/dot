@@ -11,10 +11,6 @@ setopt extendedglob nomatch notify
 unsetopt autocd beep
 bindkey -e
 
-# ensure system ssh/scp is used by default
-alias scp='/usr/bin/scp'
-alias ssh='/usr/bin/ssh'
-
 PROMPT="%T %m %1~ [%?] %# "
 case $TERM in
     xterm*)
@@ -30,7 +26,6 @@ LC_CTYPE=en_US.UTF-8
 if test -d /usr/pkg/bin; then
 	PATH=/usr/pkg/bin:$PATH
 	ZSH_EXT_DIR=/usr/pkg/share
-	alias git='env SSH_AUTH_SOCK= git'
 elif test -d /usr/local/share/zsh; then
 	ZSH_EXT_DIR=/usr/local/share
 else

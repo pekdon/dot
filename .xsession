@@ -1,14 +1,18 @@
 #!/bin/sh
 
-if [ -e "$HOME/.profile" ]; then
-    source $HOME/.profile
+if test -e "$HOME/.profile"; then
+	source $HOME/.profile
 fi
 
+# setup environment before starting applications
 EDITOR=nvim
 LC_CTYPE=en_US.UTF-8
 PATH=$HOME/pkg/bin:$PATH
-GTK3_CSD=0
-export EDITOR GTK3_CSD LC_CTYPE PATH
+if test "x$HOST" = "x"; then
+	HOST=`uname -n`
+fi
+
+export EDITOR LC_CTYPE PATH HOST
 
 xset b off
 xrdb -l $HOME/.Xdefaults
