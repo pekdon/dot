@@ -1,5 +1,9 @@
+$TERM_FONT=""
+
+INCLUDE="vars-$_HOST"
+
 $BROWSER="firefox"
 $EDITOR="xjed"
 $FILEMANAGER="worker"
-$TERM="xterm +sb"
-$TERMDARK="xterm +sb -bg black -fg white"
+$TERM="xterm +sb $TERM_FONT"
+$TERMDARK="xterm +sb $TERM_FONT -bg black -fg white"
