@@ -3,3 +3,5 @@
 	email = pekdon@gmail.com
 [pull]
 	ff = only
+[init]
+	defaultBranch = master
