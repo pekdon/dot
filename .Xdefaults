@@ -1,16 +1,12 @@
-XTerm*font: -misc-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
 XTerm*metaSendsEscape: true
 XTerm*loginShell: true
 XTerm*saveLines: 10000
 XTerm*termName: xterm-256color
 
-Emacs.fontBackend: x
-Emacs.font: -misc-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-
-XJed.font: -misc-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-
 dt.obsolete: true
 
-! Plan9
-*.foreground:	#000000
-*.background:	#ffffea
+! used in xterm_control_timeofday.sh
+pekwm*lightBackground: #fbf8ef
+pekwm*lightForeground: #655370
+pekwm*darkBackground: #292b2e
+pekwm*darkForeground: #b2b2b2
