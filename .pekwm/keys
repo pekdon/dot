@@ -226,7 +226,7 @@ Global {
 	Chain = "Ctrl Mod1 E" {
 		KeyPress = "D" { Actions = "Exec $TERMDARK" }
 		KeyPress = "E" { Actions = "Exec $TERM" }
-		KeyPress = "L" { Actions = "Exec xlock -mode blank" }
+		KeyPress = "L" { Actions = "Exec toggle_kbd_layout.sh first ; Exec xscreensaver-command -lock" }
 		KeyPress = "S" { Actions = "Exec pekwm_screenshot" }
 		KeyPress = "C" { Actions = "ShowCmdDialog" }
 	}
