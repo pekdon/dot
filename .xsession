@@ -15,8 +15,11 @@ fi
 export EDITOR LC_CTYPE PATH HOST
 
 xset b off
+xset s off
+xset -dpms
 xrdb -l $HOME/.Xdefaults
 pekwm_panel &
+xscreensaver &
 
 if [ -z "$SSH_AGENT_PID" ]; then
     exec ssh-agent pekwm

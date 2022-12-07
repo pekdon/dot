@@ -38,6 +38,12 @@ TitleRules {
     Property = "^Navigator,^Firefox" {
         Rule = "/(.*) . Mozilla Firefox/MF: \\1/"
     }
+    Property = "^Navigator,^Firefox" {
+        Rule = "/^Mozilla Firefox$/MF/"
+    }
+    Property = "^emacs,^Emacs" {
+        Rule = "/^(.*) - GNU Emacs at.*/E: \\1/"
+    }
 }
 
 
