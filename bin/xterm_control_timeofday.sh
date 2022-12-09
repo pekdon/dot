@@ -32,18 +32,21 @@ long='21.200051'
 TIME_INFO_PATH="$HOME/.time_info"
 TIME_INFO_MAX_AGE_S="604800"
 
-UTC_OP=`date '+%z' | sed 's/^\([+-]\).*/\1/'`
-UTC_OFFSET=`date '+%z' | sed 's/^[+-]\([0-9][0-9]\).*/\1/'`
+error()
+{
+    echo "$@"
+    exit 1
+}
 
 clean_time_info_cache()
 {
     time_info_updated=`cat "$TIME_INFO_PATH.stamp" 2>/dev/null`
-    if test $? -ne 0; then
+    if test "x$time_info_updated" = "x"; then
         time_info_updated='0'
     fi
-    now=`pekwm_ctrl -a util timestamp 2>/dev/null`
+    now=`shell_util get-unix-time`
     if test $? -eq 0; then
-        age=$(($now - $time_info_updated))
+        age=`shell_util calc $now - $time_info_updated`
         if test $age -gt $TIME_INFO_MAX_AGE_S; then
             rm -f "$TIME_INFO_PATH" "$TIME_INFO_PATH.stamp"
         fi
@@ -52,7 +55,7 @@ clean_time_info_cache()
 
 fetch_time_info()
 {
-    curl -q "https://api.sunrise-sunset.org/json?lat=$lat&lng=$long" \
+    curl -s "https://api.sunrise-sunset.org/json?lat=$lat&lng=$long" \
         | sed 's/.*"\(sunrise\|sunset\)":"\([^"]\+\)".*"\(sunrise\|sunset\)":"\([^"]\+\)".*/time_\1="\2"\ntime_\3="\4"/' \
               > "$TIME_INFO_PATH"
     if test $? -eq 0; then
@@ -65,12 +68,6 @@ get_pekwm_color()
     xrdb -query | awk "/pekwm\*${1}:/ { print \$2 }"
 }
 
-to_limit_before()
-{
-    hour=`echo $1 | sed 's/:.*//'`
-    echo $(($hour $UTC_OP $UTC_OFFSET))
-}
-
 # remove old cache if it exists
 clean_time_info_cache
 if ! test -e "$TIME_INFO_PATH"; then
@@ -78,11 +75,15 @@ if ! test -e "$TIME_INFO_PATH"; then
 fi
 
 . "$TIME_INFO_PATH"
-dark_before=`to_limit_before $time_sunrise`
-dark_after=`to_limit_before $time_sunset`
+dark_before_utc=`shell_util to-unix-time "$time_sunrise" '%I:%M:%S %p' utc`
+dark_after_utc=`shell_util to-unix-time "$time_sunset" '%I:%M:%S %p' utc`
 
-h=`date '+%H'`
-if test $h -lt $dark_before || test $h -gt $dark_after; then
+# get time of day using start of day timestamp vs current timestamp
+now=`shell_util get-unix-time`
+day_start_str=`shell_util format-unix-time $now '%Y-%m-%d 00:00:00'`
+day_start=`shell_util to-unix-time "$day_start_str" '%Y-%m-%d %H:%M:%S'`
+tod=`shell_util calc $now - $day_start`
+if test $tod -lt $dark_before_utc || test $tod -gt $dark_after_utc; then
     mode="dark"
 else
     mode="light"
@@ -91,9 +92,9 @@ fi
 fg=`get_pekwm_color ${mode}Foreground`
 bg=`get_pekwm_color ${mode}Background`
 if test -z "$fg"; then
-    die "missing pekwm*${mode}Foreground resource"
+    error "missing pekwm*${mode}Foreground resource"
 elif test -z "$bg"; then
-    die "missing pekwm*${mode}Background resource"
+    error "missing pekwm*${mode}Background resource"
 else
     xtermcontrol --fg="$fg" --bg="$bg"
 fi
