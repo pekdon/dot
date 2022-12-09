@@ -15,7 +15,7 @@ setopt extendedglob nomatch notify
 unsetopt autocd beep
 bindkey -e
 
-PROMPT="%T %m %1~ [%?] %# "
+PROMPT="%{$fg[yellow]%}%T%{$reset_color%} %m %{$fg[green]%}%1~%{$reset_color%} [%?] %{$fg[cyan]%}%#%{$reset_color%} "
 case $TERM in
     xterm*)
         chpwd () { print -Pn "\e]0;%n@%m: %~\a" }
