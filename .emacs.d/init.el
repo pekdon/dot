@@ -6,6 +6,9 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
+(load-file "~/.emacs.d/lisp/time-synchronize-theme.el")
+(set-face-attribute 'default nil :family "JuliaMono" :height 120)
+
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "C-x C-b") 'bs-show)
 
@@ -20,7 +23,9 @@
 
 (defun maybe-cmake-project-mode ()
   (if (or (file-exists-p "CMakeLists.txt")
-          (file-exists-p (expand-file-name "CMakeLists.txt" (car (project-roots (project-current))))))
+          (file-exists-p
+	   (expand-file-name "CMakeLists.txt"
+			     (car (project-roots (project-current))))))
       (cmake-project-mode)))
 
 (setq-default cmake-project-default-build-dir-name "build/")
