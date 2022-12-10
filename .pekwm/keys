@@ -3,6 +3,14 @@ INCLUDE = "vars"
 Global {
 	KeyPress = "Ctrl Mod1 Space" { Actions = "Exec toggle_kbd_layout.sh" }
 
+	KeyPress = "XF86MonBrightnessDown" { Actions = "Exec light -U 10" }
+	KeyPress = "XF86MonBrightnessUp" { Actions = "Exec light -A 10" }
+
+        # FIXME: this should be a toggle
+        KeyPress = "XF86AudioMute" { Actions = "Exec pactl -- set-sink-volume 0 0" }
+        KeyPress = "XF86AudioLowerVolume" { Actions = "Exec pactl -- set-sink-volume 0 -10%" }
+        KeyPress = "XF86AudioRaiseVolume" { Actions = "Exec pactl -- set-sink-volume 0 +10%" }
+
 	# Moving in frames
 	KeyPress = "Mod1 Tab" { Actions = "NextFrame EndRaise" }
 	KeyPress = "Mod1 Shift Tab" { Actions = "PrevFrame EndRaise" }
