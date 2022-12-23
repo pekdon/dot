@@ -16,10 +16,10 @@
 (setq-default tab-width 8)
 
 (setq ring-bell-function 'ignore)
-
 (show-paren-mode t)
-(tool-bar-mode -1)
 (setq column-number-mode t)
+(if window-system
+  (tool-bar-mode -1))
 
 (defun maybe-cmake-project-mode ()
   (if (or (file-exists-p "CMakeLists.txt")
@@ -38,6 +38,11 @@
 (add-hook 'c++-mode-hook 'whitespace-mode)
 
 (add-hook 'cmake-mode-hook 'maybe-cmake-project-mode)
+
+(require 'lsp)
+(add-hook 'go-mode-hook 'linum-mode)
+(add-hook 'go-mode-hook 'hl-line-mode)
+(add-hook 'go-mode-hook #'lsp)
 
 (autoload 'lux-mode "lux-mode" "Lux Mode" t)
 (add-to-list 'auto-mode-alist '("\\.lux\\'" . lux-mode))
