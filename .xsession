@@ -21,8 +21,11 @@ xrdb -l $HOME/.Xdefaults
 pekwm_panel &
 xscreensaver &
 
+# ensure core dumps
+ulimit -c unlimited
+
 if [ -z "$SSH_AGENT_PID" ]; then
-    exec ssh-agent pekwm
-else
-    exec pekwm
+	eval `ssh-agent`
 fi
+
+exec pekwm
