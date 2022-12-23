@@ -26,7 +26,11 @@ case $TERM in
         ;;
 esac
 
-EDITOR=nvim
+if test `which nvim >/dev/null 2>&1`; then
+	EDITOR=nvim
+else
+	EDITOR=vim
+fi
 LC_CTYPE=en_US.UTF-8
 
 if test -d /usr/pkg/bin; then
@@ -34,6 +38,8 @@ if test -d /usr/pkg/bin; then
 	ZSH_EXT_DIR=/usr/pkg/share
 elif test -d /usr/local/share/zsh; then
 	ZSH_EXT_DIR=/usr/local/share
+elif test -d /opt/local/share/zsh; then
+	ZSH_EXT_DIR=/opt/local/share
 else
 	ZSH_EXT_DIR=/usr/share
 fi
