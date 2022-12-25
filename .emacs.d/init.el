@@ -6,6 +6,8 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
+;; cmake-project lsp-mode go-mode
+
 (load-file "~/.emacs.d/lisp/time-synchronize-theme.el")
 (set-face-attribute 'default nil :family "JuliaMono" :height 120)
 

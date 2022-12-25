@@ -22,17 +22,19 @@ nnoremap <C-f> :NERDTreeFind<CR>
 let g:cmake_default_config = 'build'
 
 call plug#begin()
-Plug 'airblade/vim-gitgutter'
 Plug 'cdelledonne/vim-cmake'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'preservim/nerdtree'
-Plug 'tpope/vim-fugitive'
+Plug 'tanvirtin/vgit.nvim'
 Plug 'vim-airline/vim-airline'
 call plug#end()
 
 lua <<EOF
+require('vgit').setup()
+
 local nvim_lsp = require('lspconfig')
 nvim_lsp.clangd.setup{}
 

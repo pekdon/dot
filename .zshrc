@@ -26,7 +26,8 @@ case $TERM in
         ;;
 esac
 
-if test `which nvim >/dev/null 2>&1`; then
+which nvim >/dev/null 2>&1
+if test $? -eq 0; then
 	EDITOR=nvim
 else
 	EDITOR=vim
