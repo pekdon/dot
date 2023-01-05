@@ -46,8 +46,8 @@ link_files()
     ln -sf "$DOT_DIR/src/shell_util" "$HOME/pkg/bin/shell_util"
 
     echo "link files (dot)"
-    for i in .config .emacs.d .gitconfig .pekwm .tmux.conf .vimrc .Xdefaults \
-		     .xsession .zshrc; do
+    for i in .config .emacs.d .gitconfig .pekwm .tmux.conf .vimrc \
+	     .Xdefaults .xsession .xscreensaver .zshrc; do
 	ln -sf "$DOT_DIR/$i" "$HOME/$i"
     done
 }
