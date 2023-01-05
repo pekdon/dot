@@ -28,6 +28,7 @@ RootMenu = "Pekwm" {
 			# ~/.pekwm/config. You will know if you want this.
 			# Entry = "" { Actions = "Dynamic $_PEKWM_SCRIPT_PATH/pekwm_ws_menu.sh goto dynamic" }
 		}
+
 		Entry = "Window.." { Actions = "ShowMenu GotoClient True" }
 	}
 
@@ -37,8 +38,11 @@ RootMenu = "Pekwm" {
 			Entry { Actions = "Dynamic $_PEKWM_SCRIPT_PATH/pekwm_themeset.sh ~/.pekwm/themes" }
 		}
 		Entry = "Reload" { Actions = "Reload" }
+	Separator {}
 		Entry = "Restart" { Actions = "Restart" }
+	Separator {}
 		Entry = "Exit" { Actions = "Exit" }
+	Separator {}
 		Submenu = "Exit to" {
 			Entry = "Xterm" { Actions = "RestartOther xterm" }
 			Entry = "TWM" { Actions = "RestartOther twm" }

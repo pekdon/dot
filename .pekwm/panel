@@ -8,11 +8,20 @@ Commands {
   Command = "uptime | sed 's/.*:/load/'" {
     Interval = "15"
   }
+  Command = "echo -n 'battery ' && cat /sys/class/power_supply/BAT0/capacity" {
+    Interval = "60"
+  }
 }
 
 Widgets {
   Text = "%:WORKSPACE_NUMBER:" {
     Size = "TextWidth _00_"
+  }
+  Bar = "battery" {
+    Size = "Pixels 24"
+  }
+  Text = "%battery \\\\\\%" {
+    Size = "TextWidth _100%_"
   }
   Text = "%load" {
     Size = "TextWidth _0.00, 0.00, 0.00_"

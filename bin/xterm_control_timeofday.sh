@@ -74,6 +74,11 @@ if ! test -e "$TIME_INFO_PATH"; then
     fetch_time_info
 fi
 
+# no DISPLAY set, skip background control
+if test -z "$DISPLAY"; then
+	exit 0
+fi
+
 . "$TIME_INFO_PATH"
 dark_before_utc=`shell_util to-unix-time "$time_sunrise" '%I:%M:%S %p' utc`
 dark_after_utc=`shell_util to-unix-time "$time_sunset" '%I:%M:%S %p' utc`
