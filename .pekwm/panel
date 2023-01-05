@@ -44,4 +44,7 @@ Widgets {
     Size = "TextWidth _0000-00-00 00:00_"
     Interval = "60"
   }
+  Systray {
+    Size = "Required"
+  }
 }
