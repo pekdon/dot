@@ -15,7 +15,15 @@ setopt extendedglob nomatch notify
 unsetopt autocd beep
 bindkey -e
 
-PROMPT="%{$fg[yellow]%}%T%{$reset_color%} %m %{$fg[green]%}%1~%{$reset_color%} [%?] %{$fg[cyan]%}%#%{$reset_color%} "
+# provide VCS information in the prompt
+autoload -Uz vcs_info
+zstyle ':vcs_info:git:*' formats "(%b) "
+precmd() {
+	vcs_info
+}
+
+setopt prompt_subst
+PROMPT='%{$fg[yellow]%}%T%{$reset_color%} %m %{$fg[green]%}%1~%{$reset_color%} %{$fg[blue]%}${vcs_info_msg_0_}%{$reset_color%}[%?]%{$fg[cyan]%}%#%{$reset_color%} '
 case $TERM in
     xterm*)
         chpwd () { print -Pn "\e]0;%n@%m: %~\a" }
