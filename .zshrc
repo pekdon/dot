@@ -42,8 +42,23 @@ else
 fi
 LC_CTYPE=en_US.UTF-8
 
+# add optional directories to the PATH
+path_add() {
+	if test -d "$1"; then
+		PATH="$1:$PATH"
+	fi
+}
+
+path_add "/usr/pkg/bin"
+path_add "/opt/local/bin"
+path_add "$HOME/go/bin"
+path_add "$HOME/.local/bin"
+path_add "$HOME/pkg/bin"
+
+export LC_CTYPE PATH EDITOR
+
+# load extensions
 if test -d /usr/pkg/bin; then
-	PATH=/usr/pkg/bin:$PATH
 	ZSH_EXT_DIR=/usr/pkg/share
 elif test -d /usr/local/share/zsh; then
 	ZSH_EXT_DIR=/usr/local/share
@@ -52,9 +67,6 @@ elif test -d /opt/local/share/zsh; then
 else
 	ZSH_EXT_DIR=/usr/share
 fi
-PATH=$HOME/pkg/bin:$PATH
-
-export LC_CTYPE PATH EDITOR
 
 source $ZSH_EXT_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
 	>/dev/null 2>&1
