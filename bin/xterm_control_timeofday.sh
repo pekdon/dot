@@ -24,6 +24,11 @@
 # pekwm*darkForeground: #b2b2b2
 #
 
+SED="sed"
+if test -f /usr/xpg4/bin/sed; then
+    SED="/usr/xpg4/bin/sed"
+fi
+
 # settings
 lat='64.618414'
 long='21.200051'
@@ -56,8 +61,12 @@ clean_time_info_cache()
 fetch_time_info()
 {
     curl -s "https://api.sunrise-sunset.org/json?lat=$lat&lng=$long" \
-        | sed 's/.*"\(sunrise\|sunset\)":"\([^"]\+\)".*"\(sunrise\|sunset\)":"\([^"]\+\)".*/time_\1="\2"\ntime_\3="\4"/' \
-              > "$TIME_INFO_PATH"
+        >  "$TIME_INFO_PATH.json"
+    $SED 's/.*"sunrise":"\([0-9:]* [AP]M\).*/time_sunrise="\1"\n/' \
+              < "$TIME_INFO_PATH.json" > "$TIME_INFO_PATH"
+    $SED 's/.*"sunset":"\([0-9:]* [AP]M\).*/time_sunset="\1"\n/' \
+              < "$TIME_INFO_PATH.json" >> "$TIME_INFO_PATH"
+    rm -f "$TIME_INFO_PATH.json"
     if test $? -eq 0; then
         echo $now > "$TIME_INFO_PATH.stamp"
     fi
@@ -70,7 +79,10 @@ get_pekwm_color()
 
 # remove old cache if it exists
 clean_time_info_cache
-if ! test -e "$TIME_INFO_PATH"; then
+if test -f "$TIME_INFO_PATH"; then
+    # cache exists
+    true
+else
     fetch_time_info
 fi
 
@@ -101,5 +113,8 @@ if test -z "$fg"; then
 elif test -z "$bg"; then
     error "missing pekwm*${mode}Background resource"
 else
-    xtermcontrol --fg="$fg" --bg="$bg"
+    xtc=`which xtermcontrol 2>&1 | $SED 's/no xtermcontrol in.*//'`
+    if test $? -eq 0 && test "x$xtc" != "x"; then
+        xtermcontrol --fg="$fg" --bg="$bg"
+    fi
 fi

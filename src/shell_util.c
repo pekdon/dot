@@ -1,5 +1,10 @@
 #define _GNU_SOURCE
+#ifdef __sun
+#define TS_FMT "%ld"
+#else /* !_sun */
+#define TS_FMT "%lld"
 #define _XOPEN_SOURCE
+#endif /* _sun */
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -22,24 +27,31 @@ static bool str_to_ll(const char *str, int64_t *val_ret)
 	return true;
 }
 
+static int get_gmtoff(struct tm *tm)
+{
+#ifdef __sun
+	return 0;
+#else /* !__sun */
+	return tm->tm_gmtoff;
+#endif /* __sun */
+}
+
 /**
  * Convert time_str in the provided format into a UNIX timestamp then
  * print on stdout.
  */
 static int to_unix_time(const char *time_str, const char *fmt, bool is_local)
 {
-	struct tm tm = {
-		.tm_sec = 0,
-		.tm_min = 0,
-		.tm_hour = 0,
-		.tm_mday = 1,
-		.tm_mon = 0,
-		.tm_year = 70,
-		.tm_wday = 4,
-		.tm_yday = 0,
-		.tm_isdst = 0
-	};
+	struct tm tm = {0};
 	char *endptr = strptime(time_str, fmt, &tm);
+	// Solaris 10, strptime zero out the parts of tm that is not included
+	// in the format, so instead of setting it before set defaults if 0
+	if (tm.tm_year == 0) {
+		tm.tm_year = 70;
+		if (tm.tm_mday == 0) {
+			tm.tm_mday = 1;
+		}
+	}
 	if (endptr != NULL && *endptr != '\0') {
 		fprintf(stderr, "failed to parse: %s (rest %s)\n",
 			time_str, endptr);
@@ -51,9 +63,9 @@ static int to_unix_time(const char *time_str, const char *fmt, bool is_local)
 		return 1;
 	}
 	if (! is_local) {
-		ts += tm.tm_gmtoff;
+		ts += get_gmtoff(&tm);
 	}
-	printf("%lld\n", ts);
+	printf(TS_FMT "\n", ts);
 	return 0;
 }
 
@@ -63,7 +75,7 @@ static int to_unix_time(const char *time_str, const char *fmt, bool is_local)
 static int get_unix_time()
 {
 	time_t ts = time(NULL);
-	printf("%lld\n", ts);
+	printf(TS_FMT "\n", ts);
 	return 0;
 }
 
@@ -74,10 +86,11 @@ static int get_unix_time()
 static int format_unix_time(const char *unix_time_str, const char *fmt,
 			    bool is_local)
 {
-	time_t ts;
-	if (! str_to_ll(unix_time_str, &ts)) {
+	int64_t ts_64;
+	if (! str_to_ll(unix_time_str, &ts_64)) {
 		return 1;
 	}
+	time_t ts = ts_64;
 
 	struct tm tm;
 	if (is_local) {
