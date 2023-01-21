@@ -70,3 +70,5 @@ fi
 
 source $ZSH_EXT_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
 	>/dev/null 2>&1
+
+export GPG_TTY=`tty 2>/dev/null`

@@ -1,7 +1,10 @@
 [user]
 	name = Claes Nästén
 	email = pekdon@gmail.com
+	signingkey = 510D08780EB3D086
 [pull]
 	ff = only
 [init]
 	defaultBranch = master
+[commit]
+	gpgsign = true
