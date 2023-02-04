@@ -2,6 +2,7 @@
 
 Panel {
   Placement = "Top"
+  Head = "0"
 }
 
 Commands {
@@ -29,7 +30,7 @@ Widgets {
   Text = "%ATOM_CUT_BUFFER0" {
     Size = "TextWidth _ABCDEFGHIJKLMNOP_"
   }
-  ClientList {
+  ClientList = "separator" {
     Size = "*"
   }
   Icon = "ATOM__XKB_RULES_NAMES" {
