@@ -62,10 +62,10 @@ fetch_time_info()
 {
     curl -s "https://api.sunrise-sunset.org/json?lat=$lat&lng=$long" \
         >  "$TIME_INFO_PATH.json"
-    $SED 's/.*"sunrise":"\([0-9:]* [AP]M\).*/time_sunrise="\1"\n/' \
-              < "$TIME_INFO_PATH.json" > "$TIME_INFO_PATH"
-    $SED 's/.*"sunset":"\([0-9:]* [AP]M\).*/time_sunset="\1"\n/' \
-              < "$TIME_INFO_PATH.json" >> "$TIME_INFO_PATH"
+    $SED 's/.*"sunrise":"\([0-9:]* [AP]M\).*/time_sunrise="\1"!/' \
+              < "$TIME_INFO_PATH.json" | tr '!' '\n' > "$TIME_INFO_PATH"
+    $SED 's/.*"sunset":"\([0-9:]* [AP]M\).*/time_sunset="\1"!/' \
+              < "$TIME_INFO_PATH.json" | tr '!' '\n' >> "$TIME_INFO_PATH"
     rm -f "$TIME_INFO_PATH.json"
     if test $? -eq 0; then
         echo $now > "$TIME_INFO_PATH.stamp"
