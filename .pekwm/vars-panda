@@ -1,0 +1,8 @@
+#$TERM_FONT="-fn '-misc-fixed-medium-r-*-*-14-*-*-*-*-*-iso10646-*'"
+#$TERM_FONT="-fn 'xft:Monospace:size=10'"
+#$TERM="urxvt +sb $TERM_FONT"
+#$TERMDARK="urxvt +sb $TERM_FONT -bg black -fg white"
+
+$TERM_FONT="-fa 'Monospace:size=10'"
+$TERM="xterm +sb $TERM_FONT"
+$TERMDARK="xterm +sb $TERM_FONT -bg black -fg white"
