@@ -6,10 +6,11 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 
+(editorconfig-mode 1)
 ;; cmake-project lsp-mode go-mode
 
 (load-file "~/.emacs.d/lisp/time-synchronize-theme.el")
-(set-face-attribute 'default nil :family "JuliaMono" :height 120)
+(set-face-attribute 'default nil :family "Source Code Pro" :height 120)
 
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "C-x C-b") 'bs-show)
@@ -35,9 +36,11 @@
 (setq-default c-basic-offset 8)
 (add-hook 'c-mode-hook 'maybe-cmake-project-mode)
 (add-hook 'c-mode-hook 'whitespace-mode)
+(add-hook 'c-mode-hook 'display-line-numbers-mode)
 
 (add-hook 'c++-mode-hook 'maybe-cmake-project-mode)
 (add-hook 'c++-mode-hook 'whitespace-mode)
+(add-hook 'c++-mode-hook 'display-line-numbers-mode)
 
 (add-hook 'cmake-mode-hook 'maybe-cmake-project-mode)
 

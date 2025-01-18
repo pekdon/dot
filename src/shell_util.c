@@ -1,3 +1,6 @@
+#ifdef __OpenBSD__
+#define TS_FMT "%lld"
+#else /* ! __OpenBSD__ */
 #define _GNU_SOURCE
 #ifdef __sun
 #define TS_FMT "%ld"
@@ -5,6 +8,7 @@
 #define TS_FMT "%lld"
 #define _XOPEN_SOURCE
 #endif /* _sun */
+#endif /* __OpenBSD__ */
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -117,7 +121,7 @@ static int help(const char *name, int code)
 {
 	fprintf(stderr, "usage: %s command (args)\n", name);
 	fprintf(stderr, "\n");
-	fprintf(stderr, "  calc num [+-*/%] num\n");
+	fprintf(stderr, "  calc num [+-*/%%] num\n");
 	fprintf(stderr, "  format-unix-time timestamp format\n");
 	fprintf(stderr, "  get-unix-time\n");
 	fprintf(stderr, "  to-unix-time time format\n");

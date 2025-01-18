@@ -18,8 +18,6 @@ fi
 ulimit -c unlimited
 
 xset b off
-xset s off
-xset -dpms
 xrdb -l $HOME/.Xdefaults
 pekwm_panel &
 xscreensaver &

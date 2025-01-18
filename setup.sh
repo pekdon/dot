@@ -6,8 +6,11 @@
 
 DOT_DIR="$(cd `dirname $0` && pwd)"
 
-FONT_MASTER="https://github.com/cormullion/juliamono/raw/master"
-FONT_NAME="JuliaMono-Regular.ttf"
+#FONT_MASTER="https://github.com/cormullion/juliamono/raw/master"
+#FONT_NAME="JuliaMono-Regular.ttf"
+
+FONT_MASTER="https://github.com/adobe-fonts/source-code-pro/raw/refs/heads/release/TTF"
+FONT_NAME="SourceCodePro-Regular.ttf"
 
 GTK_THEME_MASTER="https://github.com/thesquash"
 GTK_THEME="gtk-theme-raleigh"
@@ -70,10 +73,10 @@ EOF
 download_fonts()
 {
     mkdir -p "$HOME/.local/share/fonts"
-    if ! test -e "$HOME/.local/share/fonts/$FONT_NAME"; then
+    if ! test -e "$HOME/.local/share/fonts/$FONT_NAME1"; then
 	echo "downloading $FONT_NAME..."
 	curl -L --silent --output "$HOME/.local/share/fonts/$FONT_NAME" \
-	     "$FONT_MASTER/$FONT_NAME"
+	     "$FONT_MASTER1/$FONT_NAME"
     fi
 }
 

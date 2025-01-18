@@ -27,8 +27,6 @@ PROMPT='%{$fg[yellow]%}%T%{$reset_color%} %m %{$fg[green]%}%1~%{$reset_color%} %
 case $TERM in
     xterm*)
         chpwd () { print -Pn "\e]0;%n@%m: %~\a" }
-        periodic() { xterm_control_timeofday.sh }
-        PERIOD=300
         # initial set before any change of directory
         print -Pn "\e]0;%n@%m: %~\a"
         ;;
@@ -54,6 +52,11 @@ path_add "/opt/local/bin"
 path_add "$HOME/go/bin"
 path_add "$HOME/.local/bin"
 path_add "$HOME/pkg/bin"
+
+# activate shared pyenv if available
+if test -e "$HOME/pkg/shared/bin/activate"; then
+	source "$HOME/pkg/shared/bin/activate"
+fi
 
 export LC_CTYPE PATH EDITOR
 
