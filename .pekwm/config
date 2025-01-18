@@ -1,8 +1,8 @@
 INCLUDE = "$_PEKWM_ETC_PATH/config_system"
 
 Files {
-    Theme = "~/.pekwm/themes/pwm-p"
-    ThemeVariant = ""
+    Theme = "~/.pekwm/themes/ion-p"
+    ThemeVariant = "auto"
 }
 
 Screen {
@@ -15,5 +15,37 @@ Screen {
 
     Placement {
         Model = "CenteredOnParent Smart MouseNotUnder"
+    }
+    EdgeSize = "1 1 1 1"
+
+    OnCloseFocusRaise = "IfCovered"
+
+    UniqueNames {
+        SetUnique = "True"
+    }
+}
+
+Theme {
+#    BackgroundOverride = "Solid #cccccc"
+}
+
+Debug {
+    File = "~/.pekwm/log"
+    Level = "debug"
+}
+
+Sys {
+    LocationLookup = "True"
+    NetTheme = "~/.pekwm/themes/ion-p"
+    ThemeVariant = "auto"
+    XResources {
+        Day {
+            "XTerm*background" = "#ffffff"
+            "XTerm*foreground" = "#31363b"
+        }
+        Night {
+                "XTerm*background" = "#22272e"
+                "XTerm*foreground" = "#a5b1be"
+        }
     }
 }

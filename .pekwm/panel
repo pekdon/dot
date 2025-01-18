@@ -2,21 +2,28 @@
 
 Panel {
   Placement = "Top"
-  Head = "0"
 }
 
 Commands {
   Command = "uptime | sed 's/.*:/load/'" {
     Interval = "15"
   }
-  Command = "echo -n 'battery ' && cat /sys/class/power_supply/BAT0/capacity" {
+  Command = "$_PEKWM_SCRIPT_PATH/pekwm_panel_battery.sh" {
     Interval = "60"
+  }
+  Command = "curl -s 'https://wttr.in/?format=%c+%t\\n'" {
+    Interval = "3600"
+    Assign = "weather"
   }
 }
 
 Widgets {
   Text = "%:WORKSPACE_NUMBER:" {
     Size = "TextWidth _00_"
+  }
+  Icon = "battery_state" {
+    Icon = "battery.png"
+    Scale = "false"
   }
   Bar = "battery" {
     Size = "Pixels 24"
@@ -26,6 +33,9 @@ Widgets {
   }
   Text = "%load" {
     Size = "TextWidth _0.00, 0.00, 0.00_"
+  }
+  Text = "%weather" {
+    Size = "TextWidth ____+0_C_"
   }
   Text = "%ATOM_CUT_BUFFER0" {
     Size = "TextWidth _ABCDEFGHIJKLMNOP_"
@@ -39,7 +49,7 @@ Widgets {
     # keyboard type. evdev,pc105,us,, -> us
     Transform = "/^[^,]*,[^,]*,([^,]*),.*/\\1/"
     Scale = "false"
-    Exec = "toggle_kbd_layout.sh"
+    Exec = "$_PEKWM_SCRIPT_PATH/pekwm_toggle_kbd_layout.sh"
   }
   DateTime = "%Y-%m-%d %H:%M" {
     Size = "TextWidth _0000-00-00 00:00_"

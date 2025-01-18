@@ -1,9 +1,11 @@
 $TERM_FONT=""
 
-INCLUDE="vars-$_HOST"
-
 $BROWSER="firefox"
 $EDITOR="xjed"
 $FILEMANAGER="worker"
 $TERM="xterm +sb $TERM_FONT"
 $TERMDARK="xterm +sb $TERM_FONT -bg black -fg white"
+
+$MOVERESIZE_INCREMENT="15"
+
+INCLUDE="vars-$_HOST"
