@@ -5,8 +5,5 @@ XTerm*termName: xterm-256color
 
 dt.obsolete: true
 
-! used in xterm_control_timeofday.sh
-pekwm*lightBackground: #fbf8ef
-pekwm*lightForeground: #655370
-pekwm*darkBackground: #292b2e
-pekwm*darkForeground: #b2b2b2
+! used by pekwm to select keyboard layouts
+pekwm*keyboardLayouts: us se
