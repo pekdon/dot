@@ -13,10 +13,18 @@ set cc=80
 set wildmode=longest,list
 
 " nerdtree keybindings
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <leader>nf :NERDTreeFocus<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR>
+
+" arena
+nnoremap <C-b> :ArenaOpen<CR><TAB>
+
+" cmake
+nnoremap <C-c>b :CMakeBuild<CR>
+nnoremap <C-c>c :CMakeClose<CR>
+nnoremap <C-c>C :CMakeClean<CR>
+nnoremap <C-c>s :CMakeStop<CR>
+nnoremap <C-c>t :CMakeTest<CR>
 
 " build in build, not Debug
 let g:cmake_default_config = 'build'
@@ -26,14 +34,26 @@ Plug 'cdelledonne/vim-cmake'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
+Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
+Plug 'lourenci/github-colors'
+Plug 'akinsho/bufferline.nvim'
+Plug 'dzfrias/arena.nvim'
 call plug#end()
+
+colorscheme github-colors
 
 lua <<EOF
 -- Mappings.
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
@@ -88,4 +108,6 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+require('arena').setup()
 EOF
