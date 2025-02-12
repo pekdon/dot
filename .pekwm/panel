@@ -1,5 +1,22 @@
 # pekwm_panel configuration
 
+Define = "ResourceColors" {
+  Colors {
+    Percent = "0" {
+      Color = "#00cc00"
+    }
+    Percent = "50" {
+      Color = "#f0e68c"
+    }
+    Percent = "75" {
+      Color = "#ff7f50"
+    }
+    Percent = "90" {
+      Color = "#cc0000"
+    }
+  }
+}
+
 Panel {
   Placement = "Top"
 }
@@ -11,7 +28,7 @@ Commands {
   Command = "$_PEKWM_SCRIPT_PATH/pekwm_panel_battery.sh" {
     Interval = "60"
   }
-  Command = "curl -s 'https://wttr.in/?format=%c+%t\\n'" {
+  Command = "curl -s 'https://wttr.in/Skellefteå?format=%c+%t\\n'" {
     Interval = "3600"
     Assign = "weather"
   }
@@ -51,6 +68,16 @@ Widgets {
     Scale = "false"
     Exec = "$_PEKWM_SCRIPT_PATH/pekwm_toggle_kbd_layout.sh"
   }
+  #Bar = "sysinfo_mem_percent" {
+  #  Size = "Pixels 24"
+  #  Text = "M"
+  #  @ResourceColors
+  #}
+  #Bar = "sysinfo_swap_percent" {
+  #  Size = "Pixels 24"
+  #  Text = "S"
+  #  @ResourceColors
+  #}
   DateTime = "%Y-%m-%d %H:%M" {
     Size = "TextWidth _0000-00-00 00:00_"
     Interval = "60"

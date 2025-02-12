@@ -1,17 +1,17 @@
 INCLUDE = "$_PEKWM_ETC_PATH/config_system"
 
 Files {
-    Theme = "~/.pekwm/themes/ion-p"
     ThemeVariant = "auto"
+    Theme = "$_PEKWM_THEME_PATH/default"
 }
 
 Screen {
-    Workspaces = "4"
-    WorkspacesPerRow = "2"
-    WorkspaceNames = "01;02;03;04"
+    Workspaces = "5"
+    WorkspacesPerRow = "5"
+    WorkspaceNames = "01;02;03;04;05"
 
     #FontDefaultX11 = "True"
-    FontCharsetOverride = "iso8859-1"
+    #FontCharsetOverride = "iso8859-1"
 
     Placement {
         Model = "CenteredOnParent Smart MouseNotUnder"
@@ -36,8 +36,7 @@ Screen {
 
 Sys {
     LocationLookup = "True"
-    NetTheme = "~/.pekwm/themes/ion-p"
-    ThemeVariant = "auto"
+    NetTheme = "Raleigh"
     XResources {
         Day {
             "XTerm*background" = "#ffffff"
