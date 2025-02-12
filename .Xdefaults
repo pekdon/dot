@@ -2,6 +2,9 @@ XTerm*metaSendsEscape: true
 XTerm*loginShell: true
 XTerm*saveLines: 10000
 XTerm*termName: xterm-256color
+XTerm*allowedXtermControlOps: 4,10,11,50
+
+XLock*mode: blank
 
 dt.obsolete: true
 
