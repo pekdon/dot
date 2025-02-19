@@ -36,7 +36,7 @@ build()
 make_dirs()
 {
     echo "create non version control directory structure"
-    mkdir -p ~/git ~/projects ~/tmp/download
+    mkdir -p ~/scm ~/projects ~/tmp/download
 }
 
 link_files()
@@ -49,7 +49,7 @@ link_files()
     ln -sf "$DOT_DIR/src/shell_util" "$HOME/pkg/bin/shell_util"
 
     echo "link files (dot)"
-    for i in .config .emacs.d .gitconfig .pekwm .tmux.conf .vimrc \
+    for i in .config .emacs.d .gitconfig .pekwm .tmux.conf .vim .vimrc \
 	     .Xdefaults .xsession .xscreensaver .zshrc; do
 	ln -sf "$DOT_DIR/$i" "$HOME/$i"
     done
@@ -82,12 +82,12 @@ download_fonts()
 
 download_gtk_themes()
 {
-    if ! test -e "$HOME/git/$GTK_THEME"; then
+    if ! test -e "$HOME/scm/$GTK_THEME"; then
 	echo "downloading gtk theme $GTK_THEME..."
-	(cd $HOME/git ; git clone $GTK_THEME_MASTER/$GTK_THEME.git)
+	(cd $HOME/scm ; git clone $GTK_THEME_MASTER/$GTK_THEME.git)
     fi
     mkdir -p $HOME/.local/share/themes
-    ln -sf $HOME/git/$GTK_THEME/themes/* $HOME/.local/share/themes
+    ln -sf $HOME/scm/$GTK_THEME/themes/* $HOME/.local/share/themes
 }
 
 download_pekwm_themes()
