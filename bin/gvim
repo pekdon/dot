@@ -1,0 +1,15 @@
+#!/bin/sh
+
+cmd_path=`shell_util expandpath $0`
+if test $? -ne 0; then
+	exit $?
+fi
+
+for path in `echo $PATH | tr ':' '\n'`; do
+	if test "x$cmd_path" = "x$path/gvim"; then
+		# skip self
+		true
+	elif test -e "$path/gvim"; then
+		exec "$path/gvim" --servername `shell_util get-unix-time` "$@"
+	fi
+done
