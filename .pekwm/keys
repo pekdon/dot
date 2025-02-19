@@ -19,10 +19,8 @@ Global {
 	KeyPress = "Ctrl Mod1 Space" { Actions = "Exec $_PEKWM_SCRIPT_PATH/pekwm_toggle_kbd_layout.sh" }
 
         # Moving in frames
-        KeyPress = "Mod1 Tab" { Actions = "NextFrameMRU TempRaise" }
-        KeyPress = "Mod1 Shift Tab" { Actions = "PrevFrameMRU TempRaise" }
-        KeyPress = "Mod1 Ctrl Tab" { Actions = "NextFrame EndRaise" }
-        KeyPress = "Mod1 Ctrl Shift Tab" { Actions = "PrevFrame EndRaise" }
+        KeyPress = "Mod1 Tab" { Actions = "NextFrame EndRaise" }
+        KeyPress = "Mod1 Shift Tab" { Actions = "PrevFrame EndRaise" }
         KeyPress = "Mod4 Tab" { Actions = "ActivateClientRel 1" }
         KeyPress = "Mod4 Shift Tab" { Actions = "ActivateClientRel -1" }
         KeyPress = "Mod4 Ctrl Right" { Actions = "MoveClientRel 1" }

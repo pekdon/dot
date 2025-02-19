@@ -22,7 +22,7 @@ Panel {
 }
 
 Commands {
-  Command = "uptime | sed 's/.*:/load/'" {
+  Command = "$_PEKWM_SCRIPT_PATH/pekwm_panel_sysinfo" {
     Interval = "15"
   }
   Command = "$_PEKWM_SCRIPT_PATH/pekwm_panel_battery.sh" {
@@ -37,19 +37,29 @@ Commands {
 Widgets {
   Text = "%:WORKSPACE_NUMBER:" {
     Size = "TextWidth _00_"
+    Click = "5" { PekwmAction = "GotoWorkspace Prev" }
+    Click = "4" { PekwmAction = "GotoWorkspace Next" }
+  }
+  Text = "%sysinfo_load1" {
+    Size = "TextWidth _0.00_"
+  }
+  Bar = "sysinfo_mem_percent" {
+    Size = "Pixels 24"
+    Text = "M"
+    @ResourceColors
+  }
+  Bar = "sysinfo_swap_percent" {
+    Size = "Pixels 24"
+    Text = "S"
+    @ResourceColors
+  }
+  Bar = "battery" {
+    Size = "Pixels 24"
+    Text = "B"
   }
   Icon = "battery_state" {
     Icon = "battery.png"
     Scale = "false"
-  }
-  Bar = "battery" {
-    Size = "Pixels 24"
-  }
-  Text = "%battery \\\\\\%" {
-    Size = "TextWidth _100%_"
-  }
-  Text = "%load" {
-    Size = "TextWidth _0.00, 0.00, 0.00_"
   }
   Text = "%weather" {
     Size = "TextWidth ____+0_C_"
@@ -68,16 +78,6 @@ Widgets {
     Scale = "false"
     Exec = "$_PEKWM_SCRIPT_PATH/pekwm_toggle_kbd_layout.sh"
   }
-  #Bar = "sysinfo_mem_percent" {
-  #  Size = "Pixels 24"
-  #  Text = "M"
-  #  @ResourceColors
-  #}
-  #Bar = "sysinfo_swap_percent" {
-  #  Size = "Pixels 24"
-  #  Text = "S"
-  #  @ResourceColors
-  #}
   DateTime = "%Y-%m-%d %H:%M" {
     Size = "TextWidth _0000-00-00 00:00_"
     Interval = "60"
