@@ -10,6 +10,7 @@
 #endif /* _sun */
 #endif /* __OpenBSD__ */
 
+#include <limits.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -125,6 +126,8 @@ static int help(const char *name, int code)
 	fprintf(stderr, "  format-unix-time timestamp format\n");
 	fprintf(stderr, "  get-unix-time\n");
 	fprintf(stderr, "  to-unix-time time format\n");
+	fprintf(stderr, "  expandpath path\n");
+	fprintf(stderr, "  realpath path\n");
 	fprintf(stderr, "\n");
 	return code;
 }
@@ -171,6 +174,85 @@ static bool arg_is_local(int argc, char **argv, int max_arg)
 	return false;
 }
 
+static void
+_fill_cwd(char *buf, size_t size)
+{
+	char *env_pwd = getenv("PWD");
+	if (env_pwd == NULL) {
+		getcwd(buf, size);
+	} else {
+		strncpy(buf, env_pwd, size);
+		buf[size - 1] = '\0';
+	}
+}
+
+static char*
+_up_one_level(char *str)
+{
+	size_t len = strlen(str);
+	if (len == 0) {
+		return NULL;
+	}
+	if (str[len - 1] == '/') {
+		str[len - 1] = '\0';
+	}
+	return strrchr(str, '/');
+}
+
+/**
+ * Simplified version of realpath, not resolving the actual path only expanding
+ * . and .. components in the path.
+ */
+static int print_expandpath(const char *path)
+{
+	char resolved_name[PATH_MAX];
+	const char *src = path;
+	char *dst = resolved_name;
+	const char *end = dst + PATH_MAX - 1;
+
+	if (src[0] == '/') {
+		dst[0] = '\0';
+	} else {
+		_fill_cwd(dst, PATH_MAX);
+	}
+	dst += strlen(dst);
+
+	while (*src != '\0' && dst < end) {
+		if (strncmp(src, "..", 2) == 0) {
+			/* strip one level from the path. */
+			dst = _up_one_level(resolved_name);
+			if (dst == NULL) {
+				fprintf(stderr, "expandpath: empty path\n");
+				return 1;
+			}
+			*dst = '\0';
+			src += 2;
+		} else if (*src == '.') {
+			/* skip current directory, leading ./ has already
+			 * been expanded. */
+			src++;
+		} else {
+			*dst++ = *src++;
+		}
+	}
+	*dst = '\0';
+
+	printf("%s\n", resolved_name);
+	return 0;
+}
+
+static int print_realpath(const char *path)
+{
+	char resolved_name[PATH_MAX];
+	char *resolved_path = realpath(path, resolved_name);
+	if (resolved_path == NULL) {
+		perror("realpath");
+		return 1;
+	}
+	printf("%s\n", resolved_path);
+	return 0;
+}
+
 int main(int argc, char **argv)
 {
 	if (argc < 2) {
@@ -191,6 +273,12 @@ int main(int argc, char **argv)
 	}
 	if (strcmp(mode, "calc") == 0 && argc == 5) {
 		return calc_op(argv[2], argv[3], argv[4]);
+	}
+	if (strcmp(mode, "expandpath") == 0 && argc == 3) {
+		return print_expandpath(argv[2]);
+	}
+	if (strcmp(mode, "realpath") == 0 && argc == 3) {
+		return print_realpath(argv[2]);
 	}
 
 	return help(argv[0], 1);
