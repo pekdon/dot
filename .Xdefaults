@@ -10,3 +10,5 @@ dt.obsolete: true
 
 ! used by pekwm to select keyboard layouts
 pekwm*keyboardLayouts: us se
+pekwm.audio.player: cmus
+pekwm.audio.control: pulse
