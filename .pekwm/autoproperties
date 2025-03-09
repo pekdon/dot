@@ -3,7 +3,7 @@ Require {
 }
 
 // group xterm/urxvt applications together
-Property = "(term|rxvt),(erm|xvt)" {
+Property = "^xterm,^XTerm" {
     ApplyOn = "New"
     Group = "term" {
         Size = "5"
@@ -13,12 +13,12 @@ Property = "(term|rxvt),(erm|xvt)" {
     Icon = "terminal.png"
 }
 
-Property = "^xcalc,^XCalc" {
+Property = "^xcalc\\$,^XCalc\\$" {
     ApplyOn = "New"
     Icon = "calculator.png"
 }
 
-Property = "^emacs,^Emacs" {
+Property = "^emacs\\$,^Emacs\\$" {
     ApplyOn = "New"
     Icon = "editor.png"
 }
@@ -39,13 +39,12 @@ TitleRules {
         Rule = "/(.*) . Mozilla Firefox/MF: \\1/"
     }
     Property = "^Navigator,^Firefox" {
-        Rule = "/^Mozilla Firefox$/MF/"
+        Rule = "/^Mozilla Firefox\\$/MF/"
     }
-    Property = "^emacs,^Emacs" {
+    Property = "^emacs\\$,^Emacs\\$" {
         Rule = "/^(.*) - GNU Emacs at.*/E: \\1/"
     }
 }
-
 
 // End of titlerules. -----------------------------
 

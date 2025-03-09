@@ -1,5 +1,22 @@
 # pekwm_panel configuration
 
+Define = "FullResourceColors" {
+  Colors {
+    Percent = "0" {
+      Color = "#cc0000"
+    }
+    Percent = "10" {
+      Color = "#ff7f50"
+    }
+    Percent = "50" {
+      Color = "#f0e68c"
+    }
+    Percent = "75" {
+      Color = "#00cc00"
+    }
+  }
+}
+
 Define = "ResourceColors" {
   Colors {
     Percent = "0" {
@@ -56,6 +73,7 @@ Widgets {
   Bar = "battery" {
     Size = "Pixels 24"
     Text = "B"
+    @FullResourceColors
   }
   Icon = "battery_state" {
     Icon = "battery.png"

@@ -6,6 +6,7 @@ Files {
 }
 
 Screen {
+    #Scale = "2.0"
     Workspaces = "5"
     WorkspacesPerRow = "5"
     WorkspaceNames = "01;02;03;04;05"
@@ -35,8 +36,12 @@ Screen {
 #}
 
 Sys {
+    Enable = "True"
     LocationLookup = "True"
     NetTheme = "Raleigh"
+    DaytimeCommands {
+        Vim = "~/.pekwm/scripts/daytime_vim_background.sh"
+    }
     XResources {
         Day {
             "XTerm*background" = "#ffffff"

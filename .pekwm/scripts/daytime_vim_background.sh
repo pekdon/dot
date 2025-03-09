@@ -13,6 +13,6 @@ else
 	bg="dark"
 fi
 
-for server in `$VIM --serverlist | sed 1d`; do
+for server in `$VIM --serverlist`; do
 	$VIM --servername $server --remote-send ":set background=$bg<Esc>"
 done
