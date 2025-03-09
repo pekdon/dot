@@ -32,12 +32,7 @@ case $TERM in
         ;;
 esac
 
-which nvim >/dev/null 2>&1
-if test $? -eq 0; then
-	EDITOR=nvim
-else
-	EDITOR=vim
-fi
+EDITOR=vim
 LC_CTYPE=en_US.UTF-8
 
 # add optional directories to the PATH
