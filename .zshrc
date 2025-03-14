@@ -69,4 +69,8 @@ fi
 source $ZSH_EXT_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh \
 	>/dev/null 2>&1
 
+if test -e "$HOME/.local/shared/bin/activate"; then
+	source "$HOME/.local/shared/bin/activate"
+fi
+
 export GPG_TTY=`tty 2>/dev/null`
