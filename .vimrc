@@ -15,6 +15,9 @@ filetype plugin indent on
 set wildmode=longest,list
 set number
 
+" spell-check us
+set spell spelllang=en_us
+
 " enable use of the shipped Man command
 runtime ftplugin/man.vim
 " enable use of the shipped editorconfig
