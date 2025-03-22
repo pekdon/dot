@@ -6,10 +6,12 @@ Files {
 }
 
 Screen {
-    #Scale = "2.0"
+    Scale = "1.0"
     Workspaces = "5"
     WorkspacesPerRow = "5"
     WorkspaceNames = "01;02;03;04;05"
+
+    # WarpPointerOn = "New FocusChange"
 
     #FontDefaultX11 = "True"
     #FontCharsetOverride = "iso8859-1"

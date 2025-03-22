@@ -71,11 +71,13 @@ Widgets {
     @ResourceColors
   }
   Bar = "battery" {
+    If = "%battery_count > 0"
     Size = "Pixels 24"
     Text = "B"
     @FullResourceColors
   }
   Icon = "battery_state" {
+    If = "%battery_count > 0"
     Icon = "battery.png"
     Scale = "false"
   }
@@ -89,7 +91,7 @@ Widgets {
     Size = "*"
   }
   Icon = "ATOM__XKB_RULES_NAMES" {
-    Icon = "kbd.png"
+    Icon = "flag.png"
     # convert key list into the layout only skipping device and
     # keyboard type. evdev,pc105,us,, -> us
     Transform = "/^[^,]*,[^,]*,([^,]*),.*/\\1/"
