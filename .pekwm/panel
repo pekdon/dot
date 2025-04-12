@@ -60,7 +60,7 @@ Widgets {
   Text = "%sysinfo_load1" {
     Size = "TextWidth _0.00_"
   }
-  Bar = "sysinfo_mem_percent" {
+  Bar = "sysinfo_mem_percent sysinfo_mem_cache_percent" {
     Size = "Pixels 24"
     Text = "M"
     @ResourceColors
@@ -87,7 +87,7 @@ Widgets {
   Text = "%ATOM_CUT_BUFFER0" {
     Size = "TextWidth _ABCDEFGHIJKLMNOP_"
   }
-  ClientList = "separator" {
+  ClientList {
     Size = "*"
   }
   Icon = "ATOM__XKB_RULES_NAMES" {
@@ -99,7 +99,7 @@ Widgets {
     Exec = "$_PEKWM_SCRIPT_PATH/pekwm_toggle_kbd_layout.sh"
   }
   DateTime = "%Y-%m-%d %H:%M" {
-    Size = "TextWidth _0000-00-00 00:00_"
+    Size = "Required"
     Interval = "60"
   }
   Systray {

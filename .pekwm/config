@@ -41,6 +41,7 @@ Sys {
     Enable = "True"
     LocationLookup = "True"
     NetTheme = "Raleigh"
+    NetIconTheme = "Tango"
     DaytimeCommands {
         Vim = "~/.pekwm/scripts/daytime_vim_background.sh"
     }

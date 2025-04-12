@@ -1,0 +1,3 @@
+$TERM_FONT="-fn '-misc-fixed-medium-r-*-*-18-*-*-*-*-*-iso10646-*'"
+$TERM="xterm +sb $TERM_FONT"
+$TERMDARK="xterm +sb $TERM_FONT -bg black -fg white"
